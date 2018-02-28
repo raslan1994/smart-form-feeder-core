@@ -24,7 +24,7 @@ public class Segmentation {
 	}
 	
 	public static List<BufferedImage> lineSegmentation(BufferedImage img){
-		int width = img.getWidth();
+		int width = img.getWidth()-1;
 		int y0 = -1;
 		int y1 = -1;
 		
@@ -32,7 +32,7 @@ public class Segmentation {
 		
 		for(int y = 0; y <img.getHeight(); y++){
 			if(rowHasBlackPixel(img, y)){
-				if(y0 != -1 && y0 != y1){
+				if(y0 == -1){
 					y0 =y;
 				}
 				y1 = y;
@@ -105,8 +105,12 @@ public class Segmentation {
 		List<BufferedImage> seperatedChars = new LinkedList<BufferedImage>();
 		List<BufferedImage> lines = lineSegmentation(img);
 		
+		System.out.println("no of lines " + lines.size());
+		
 		for(BufferedImage line : lines){
 			List<BufferedImage> chars = characterSegmentation(line);
+			
+			System.out.println("no of chars " + chars.size());
 			
 			for(BufferedImage c : chars){
 				BufferedImage tc = trim(c);
