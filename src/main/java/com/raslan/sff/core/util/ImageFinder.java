@@ -12,7 +12,7 @@ public class ImageFinder extends SimpleFileVisitor<Path>{
 	private List<Path> images;
 
     public ImageFinder() {
-        images = new ArrayList<>();
+        images = new ArrayList<Path>();
     }
 
     @Override
