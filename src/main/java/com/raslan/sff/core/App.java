@@ -11,6 +11,7 @@ import org.neuroph.core.data.DataSetRow;
 
 import com.raslan.sff.core.data.DatasetLoader;
 import com.raslan.sff.core.data.LettersDataSetLoader;
+import com.raslan.sff.core.nn.Learner;
 import com.raslan.sff.core.util.Logger;
 
 /**
@@ -21,6 +22,12 @@ public class App
 {
     public static void main( String[] args ) throws URISyntaxException
     {
+    	/*DatasetLoader loader = new LettersDataSetLoader();
+    	DataSet trainDs = loader.loadDataSet(new File(Config.DATASET_TRAIN_PATH).toPath());
+    	DataSet testDs = loader.loadDataSet(new File(Config.DATASET_TEST_PATH).toPath());
+    	Learner learner = new Learner(trainDs, testDs, Config.DEFAULT_LEARNING_RATE, Config.DEFAULT_MOMENTUM, Config.DEFAULT_NEURAL_NETWORK_NAME);
+    	learner.startLearning();*/
+    	
     	/*String trainPath = "/home/raslanrauff/ML/Dataset/english_bk/in/1";
 		DatasetLoader loader = new LettersDataSetLoader();
 		DataSet dataset = loader.loadDataSet(new File(trainPath).toPath());
