@@ -16,24 +16,39 @@
 
   <build>
   	<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <executable>/usr/bin/javac /usr/lib/jvm/java-8-oracle/bin/javac</executable>
+          <compilerVersion>1.8</compilerVersion>
+        </configuration>
+      </plugin>
+  		  <!-- <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.1</version>
+	      </plugin>
   		  <plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-toolchains-plugin</artifactId>
-		    <version>1.0</version>
+		    <version>1.1</version>
 		    <configuration>
 		      <toolchains>
 		        <type>jdk</type>
 			     <provides>
 			         <version>1.8</version>
-			         <vendor>sun</vendor>
-			         <id>oracle</id>
+			         <vendor>oracle</vendor>
 			     </provides>
 			     <configuration>
 			        <jdkHome>/usr/lib/jvm/java-8-oracle/</jdkHome>
 			     </configuration>
 		      </toolchains>
 		    </configuration>
-		  </plugin>
+		  </plugin>-->
   	
   		<plugin>
 		  <groupId>org.codehaus.mojo</groupId>
