@@ -16,6 +16,21 @@
 
   <build>
   	<plugins>
+  		  <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-toolchains-plugin</artifactId>
+		    <version>1.1</version>
+		    <configuration>
+		      <mainClass>com.raslan.sff.core.App</mainClass>
+		      <toolchains>
+		        <jdk>
+		          <version>1.8</version>
+		          <vendor>oracle</vendor>
+		        </jdk>
+		      </toolchains>
+		    </configuration>
+		  </plugin>
+  	
   		<plugin>
 		  <groupId>org.codehaus.mojo</groupId>
 		  <artifactId>exec-maven-plugin</artifactId>
@@ -29,16 +44,6 @@
 		  </executions>
 		  <configuration>
 		    <mainClass>com.raslan.sff.core.App</mainClass>
-		    <toolchains>
-            	<jdk>
-              		<!-- Select the JDK to be searched --> 
-              		<version>1.8</version>
-            	</jdk>
-          	</toolchains>
-		    <!--<arguments>
-		      <argument>foo</argument>
-		      <argument>bar</argument>
-		    </arguments>-->
 		  </configuration>
 		</plugin>
   	</plugins>
