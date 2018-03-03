@@ -11,7 +11,7 @@ public class FiltersFactory {
     public static List<Filter> filters;
 
     public static List<Filter> getAvailableFilters() {
-        filters = new ArrayList<>();
+        filters = new ArrayList<Filter>();
         filters.add(new GrayscaleFilter());
         filters.add(new GrayscaleUnifromFilter());
         filters.add(new GrayscaleBT601Filter());

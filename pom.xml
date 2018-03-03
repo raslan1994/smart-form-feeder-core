@@ -29,6 +29,12 @@
 		  </executions>
 		  <configuration>
 		    <mainClass>com.raslan.sff.core.App</mainClass>
+		    <toolchains>
+            	<jdk>
+              		<!-- Select the JDK to be searched --> 
+              		<version>1.8</version>
+            	</jdk>
+          	</toolchains>
 		    <!--<arguments>
 		      <argument>foo</argument>
 		      <argument>bar</argument>
