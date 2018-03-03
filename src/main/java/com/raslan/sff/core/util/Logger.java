@@ -21,4 +21,8 @@ public class Logger {
 	public void error(String title, String msg){
 		System.err.println(String.format("(%s) %s --> %s", df.format(new Date()), title, msg));
 	}
+	
+	public void info(String title, String msg){
+		System.out.println(String.format("[i %s] %s --> %s", df.format(new Date()), title, msg));
+	}
 }
