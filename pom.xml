@@ -22,7 +22,7 @@
         <version>3.7.0</version>
         <configuration>
           <verbose>true</verbose>
-          <fork>true</fork>
+          <!-- <release>8</release>-->
           <executable>/usr/bin/javac /usr/lib/jvm/java-8-oracle/bin/javac</executable>
           <compilerVersion>1.8</compilerVersion>
         </configuration>
