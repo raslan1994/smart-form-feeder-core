@@ -1,6 +1,8 @@
 package com.raslan.sff.core;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
@@ -11,6 +13,7 @@ import org.neuroph.core.data.DataSetRow;
 
 import com.raslan.sff.core.data.DatasetLoader;
 import com.raslan.sff.core.data.LettersDataSetLoader;
+import com.raslan.sff.core.nn.CharacterRecognizer;
 import com.raslan.sff.core.nn.Learner;
 import com.raslan.sff.core.util.Logger;
 
@@ -20,8 +23,10 @@ import com.raslan.sff.core.util.Logger;
  */
 public class App 
 {
-    public static void main( String[] args ) throws URISyntaxException
+    public static void main( String[] args ) throws URISyntaxException, IOException
     {
+    	IOHelper ioHelper = IOHelper.getInstance();
+    	
     	/*DatasetLoader loader = new LettersDataSetLoader();
     	DataSet trainDs = loader.loadDataSet(new File(Config.DATASET_TRAIN_PATH).toPath());
     	DataSet testDs = loader.loadDataSet(new File(Config.DATASET_TEST_PATH).toPath());
@@ -45,9 +50,15 @@ public class App
 		}
 		
 		System.out.println(dataset.getInputSize());*/
+    	
+    	CharacterRecognizer cr = new CharacterRecognizer("/home/raslanrauff/ML/Dataset/NeuralNet_English.nnet");
+		BufferedImage img = ioHelper.getBufferedImageFromResource("ltr.png");
+		
+		cr.recognizeLetter(img, 'l');
+		
+		
     	Logger logger = Logger.getInstance();
     	logger.info("App", "Ends :)");
     	
-		
     }
 }
