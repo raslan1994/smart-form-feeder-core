@@ -52,7 +52,7 @@ public class App
 		System.out.println(dataset.getInputSize());*/
     	
     	CharacterRecognizer cr = new CharacterRecognizer("/home/raslanrauff/ML/Dataset/NeuralNet_English.nnet");
-		BufferedImage img = ioHelper.getBufferedImageFromResource("ltr.png");
+		BufferedImage img = ioHelper.getBufferedImageFromResource("ltr1.png");
 		
 		cr.recognizeLetter(img, 'l');
 		
