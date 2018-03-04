@@ -13,8 +13,12 @@ public class IOHelper {
 		return singleton;
 	}
 	
-	public BufferedImage getBufferedImage(String filePath) throws URISyntaxException, IOException{
-		File f = new File(getClass().getClassLoader().getResource(filePath).toURI());
+	public BufferedImage getBufferedImageFromResource(String filePath) throws URISyntaxException, IOException{
+		File f = getFileFromResource(filePath);
 		return ImageIO.read(f);
+	}
+	
+	public File getFileFromResource(String filePath) throws URISyntaxException{
+		return new File(getClass().getClassLoader().getResource(filePath).toURI());
 	}
 }
