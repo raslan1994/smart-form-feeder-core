@@ -17,7 +17,6 @@ import com.raslan.sff.core.data.LettersDataSetLoader;
 import com.raslan.sff.core.nn.helper.DiagonalCrossFeatureVector;
 import com.raslan.sff.core.nn.helper.FeatureVector;
 import com.raslan.sff.core.util.Logger;
-import com.raslan.sff.core.util.ValueComparator;
 import com.raslan.sff.filters.FiltersFactory;
 
 public class CharacterRecognizer {
