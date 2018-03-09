@@ -7,7 +7,7 @@ import java.util.List;
 import com.raslan.sff.core.Config;
 
 public class Segmentation {
-	public static boolean rowHasBlackPixel(BufferedImage img, int row){
+	private static boolean rowHasBlackPixel(BufferedImage img, int row){
 		for(int x = 0; x < img.getWidth(); x++){
 			int p = Math.abs(img.getRGB(x, row));
 			if(p > Config.THRESHOLD){return true;}
@@ -15,7 +15,7 @@ public class Segmentation {
 		return false;
 	}
 	
-	public static boolean columnHasBlackPixel(BufferedImage img, int col){
+	private static boolean columnHasBlackPixel(BufferedImage img, int col){
 		for(int y = 0; y < img.getHeight(); y++){
 			int p = Math.abs(img.getRGB(col, y));
 			if(p > Config.THRESHOLD){return true;}
@@ -23,7 +23,7 @@ public class Segmentation {
 		return false;
 	}
 	
-	public static List<BufferedImage> lineSegmentation(BufferedImage img){
+	private static List<BufferedImage> lineSegmentation(BufferedImage img){
 		int width = img.getWidth()-1;
 		int y0 = -1;
 		int y1 = -1;
@@ -54,7 +54,7 @@ public class Segmentation {
 		return lines;
 	}
 	
-	public static List<BufferedImage> characterSegmentation(BufferedImage img){
+	private static List<BufferedImage> characterSegmentation(BufferedImage img){
 		int height = img.getHeight()-1;
 		int x0 = -1;
 		int x1 = -1;
@@ -84,7 +84,7 @@ public class Segmentation {
 		return chars;
 	}
 	
-	public static BufferedImage trim(BufferedImage img){
+	private static BufferedImage trim(BufferedImage img){
 		int width = img.getWidth()-1;
 		int y0 = -1;
 		int y1 = -1;

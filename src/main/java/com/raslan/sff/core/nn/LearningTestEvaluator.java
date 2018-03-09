@@ -54,7 +54,7 @@ public class LearningTestEvaluator implements LearningEventListener{
 			logger.log("LearningTestEvaluation", "Saving neural network");
 			nnet.save(networkName);
 		}else{
-			passes++;
+			passes = 0;
 			for(DataSetRow row : trainDs.getRows()){
 				nnet.setInput(row.getInput());
 				nnet.calculate();
@@ -69,23 +69,23 @@ public class LearningTestEvaluator implements LearningEventListener{
 		}
 	}
 	
-	private static boolean isOutputEquals(double[] netOutput, double[] desiredOutput){
-		int index = 0;
-		for(int i = 0; i < desiredOutput.length; i++){
-			if(desiredOutput[i] > 0.5){
-				index = i;
-				break;
-			}
-		}
-		
-		int maxIndex = 0;
-		double maxValue = 0;
-		for(int i = 0; i < netOutput.length; i++){
-			if(netOutput[i] > maxValue){
-				maxValue = netOutput[i];
-				maxValue = i;
-			}
-		}
-		return maxIndex == index;
-	}
+	private static boolean isOutputEquals(double[] netOutput, double[] desiredOutput) {
+        int index = -1;
+        for (int i = 0; i < desiredOutput.length; i++) {
+            if (desiredOutput[i] > 0.5) {
+                index = i;
+                break;
+            }
+        }
+
+        int maxIndex = 0;
+        double maxValue = 0;
+        for (int i = 0; i < netOutput.length; i++) {
+            if (netOutput[i] > maxValue) {
+                maxValue = netOutput[i];
+                maxIndex = i;
+            }
+        }
+        return maxIndex == index;
+    }
 }

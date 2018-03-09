@@ -54,7 +54,7 @@ public class BinaryImage {
         return img;
     }
     
-    public String dumpToJBIC() {
+    /*public String dumpToJBIC() {
         StringBuilder builder = new StringBuilder();
         int width = pixels.length;
         int height = pixels[0].length;
@@ -68,7 +68,7 @@ public class BinaryImage {
             }
         }
         return builder.toString();
-    }
+    }*/
 
     public double[] getVector() {
         int width = pixels.length;

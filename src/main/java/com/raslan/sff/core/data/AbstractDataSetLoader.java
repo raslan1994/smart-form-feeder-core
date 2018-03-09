@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 import org.neuroph.core.data.DataSetRow;
 
-import com.raslan.sff.core.nn.helper.DiagonalCrossFeatureVector;
+import com.raslan.sff.core.nn.helper.DiagonalFeatureVector;
 import com.raslan.sff.core.nn.helper.FeatureVector;
 import com.raslan.sff.core.util.ImageFinder;
 import com.raslan.sff.core.util.Logger;
@@ -48,7 +48,7 @@ public abstract class AbstractDataSetLoader {
         if (index == -1) {
             return null;
         }
-        FeatureVector vector = new DiagonalCrossFeatureVector(image,mapper);
+        FeatureVector vector = new DiagonalFeatureVector(image,mapper);
         double[] output = new double[mapper.getSize()];
         output[index] = 1.0;
         return new DataSetRow(vector.getInputs(), output);
