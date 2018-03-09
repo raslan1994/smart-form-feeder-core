@@ -1,30 +1,5 @@
 package com.raslan.sff.core;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
-import java.util.Iterator;
-
-import javax.imageio.ImageIO;
-
-import org.neuroph.core.data.DataSet;
-import org.neuroph.core.data.DataSetRow;
-
-import com.raslan.sff.core.data.BinaryImage;
-import com.raslan.sff.core.data.CharacterMapper;
-import com.raslan.sff.core.data.DatasetLoader;
-import com.raslan.sff.core.data.InputImage;
-import com.raslan.sff.core.data.LetterCharacterMapper;
-import com.raslan.sff.core.data.LettersDataSetLoader;
-import com.raslan.sff.core.nn.CharacterRecognizer;
-import com.raslan.sff.core.nn.Learner;
-import com.raslan.sff.core.nn.helper.DiagonalFeatureVector;
-import com.raslan.sff.core.util.Logger;
-import com.raslan.sff.ui.TemplatePreview;
-import com.raslan.sff.ui.data.FormTemplateManager;
 
 /**
  * Primary execution class
@@ -32,7 +7,7 @@ import com.raslan.sff.ui.data.FormTemplateManager;
  */
 public class App 
 {
-    public static void main( String[] args ) throws URISyntaxException, IOException
+    public static void main( String[] args ) 
     {
     	/*CharacterMapper cm = new LetterCharacterMapper();
     	BufferedImage img = ImageIO.read(new File("/home/raslanrauff/ML/Dataset/english/new_method/1/A1B.png"));
