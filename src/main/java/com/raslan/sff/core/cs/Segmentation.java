@@ -5,8 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.raslan.sff.core.Config;
+import com.raslan.sff.core.util.Logger;
 
 public class Segmentation {
+	Logger logger= Logger.getInstance();
 	private static boolean rowHasBlackPixel(BufferedImage img, int row){
 		for(int x = 0; x < img.getWidth(); x++){
 			int p = Math.abs(img.getRGB(x, row));
@@ -105,12 +107,12 @@ public class Segmentation {
 		List<BufferedImage> seperatedChars = new LinkedList<BufferedImage>();
 		List<BufferedImage> lines = lineSegmentation(img);
 		
-		System.out.println("no of lines " + lines.size());
-		
+		logger.log("Segmentation","No of lines detected -> "+lines.size());
+		int linePos = 0;
 		for(BufferedImage line : lines){
 			List<BufferedImage> chars = characterSegmentation(line);
 			
-			System.out.println("no of chars " + chars.size());
+			logger.log("Segmentation", "No of chracters in line "+ ++linePos+" -> "+chars.size());
 			
 			for(BufferedImage c : chars){
 				BufferedImage tc = trim(c);
