@@ -1,6 +1,5 @@
 package com.raslan.sff.core.nn;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,18 +8,15 @@ import org.neuroph.core.events.LearningEvent;
 import org.neuroph.core.events.LearningEventListener;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.nnet.learning.MomentumBackpropagation;
-import org.neuroph.util.TrainingSetImport;
 import org.neuroph.util.TransferFunctionType;
 
 import com.raslan.sff.core.Config;
-import com.raslan.sff.core.data.DatasetLoader;
 import com.raslan.sff.core.util.Logger;
 
 public class Learner {
 	private Logger logger = Logger.getInstance();
 	private double learningRate;
 	private double momentum;
-	private String networkName;
 	
 	private DataSet testDs;
 	private DataSet trainDs;
@@ -28,12 +24,11 @@ public class Learner {
 	
 	private List<NetTaskListener> listeners;
 	
-	public Learner(DataSet trainDs, DataSet testDs, double learningRate, double momentum, String networkName){
+	public Learner(DataSet trainDs, DataSet testDs, double learningRate, double momentum){
 		this.trainDs = trainDs;
 		this.testDs = testDs;
 		this.learningRate = learningRate;
 		this.momentum = momentum;
-		this.networkName = networkName;
 		this.listeners = new ArrayList<NetTaskListener>();
 		
 	}
@@ -66,7 +61,7 @@ public class Learner {
 				network.setLearningRule(backpropagation);
 				
 				logger.info("Learner", "Learning process begins");
-				logger.info("Learner", String.format("Parameters -> Learning rate : %f, Momentum: ", learningRate,momentum));
+				logger.info("Learner", String.format("Parameters -> Learning rate : %f, Momentum: %f", learningRate,momentum));
 				
 				//execute in new thread
 				network.learnInNewThread(trainDs);
