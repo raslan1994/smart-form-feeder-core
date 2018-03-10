@@ -28,7 +28,7 @@ public class FilterTester {
 				BufferedImage img = ImageIO.read(p.toFile());
 				
 				for(Filter f : defaultFilters){
-					f.applyFilter(img);
+					img = f.applyFilter(img);
 				}
 				
 				ImageHelper.writeImageToFile(img, "png", exportPath+p.getFileName().toString());
