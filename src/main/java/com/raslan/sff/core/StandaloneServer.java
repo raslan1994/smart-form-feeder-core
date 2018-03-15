@@ -19,9 +19,9 @@ public class StandaloneServer
     	Server server = new Server(Config.SERVER_PORT);
     	
     	ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-    	ServletHolder HomePageHolder = new ServletHolder("homePage",HomePageServlet.class);
+    	ServletHolder homePageHolder = new ServletHolder("homePage",HomePageServlet.class);
     	
-    	context.addServlet(HomePageHolder, "/");
+    	context.addServlet(homePageHolder, "/");
     	
     	server.setHandler(context);
 
