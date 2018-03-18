@@ -3,6 +3,8 @@ package com.raslan.sff.core;
 public class Config {
 	public static final int SERVER_PORT = 8081;
 	
+	public static final String FORM_LAYOUT_CONFIGURATION_BASE_PATH = "/home/raslanrauff/smart-form-feeder/";
+	
 	public static final int THRESHOLD = 100;
 	public static final String DATASET_TEST_PATH = "/home/raslanrauff/ML/Dataset/english/test/";
 	public static final String DATASET_TRAIN_PATH = "/home/raslanrauff/ML/Dataset/english/train/";
