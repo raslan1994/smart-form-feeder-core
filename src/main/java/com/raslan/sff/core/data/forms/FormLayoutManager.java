@@ -1,10 +1,12 @@
 package com.raslan.sff.core.data.forms;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,5 +61,39 @@ public class FormLayoutManager {
 		} catch (IOException e) {
 			logger.error("FormLayoutManager", e.toString());
 		}
+	}
+	
+	public BufferedImage cropField(BufferedImage img, FormField field){
+		return img.getSubimage(field.getX(), field.getY(), field.getWidth(), field.getHeight());
+	}
+	
+	public FormFieldWithImage extendFormField(FormField field, BufferedImage img){
+		FormFieldWithImage f = new FormFieldWithImage();
+		f.setField(field.getField());
+		f.setX(field.getX());
+		f.setY(field.getY());
+		f.setWidth(field.getWidth());
+		f.setHeight(field.getHeight());
+		f.setColor(field.getColor());
+		f.setImg(img);
+		
+		return f;
+	}
+	
+	public List<FormFieldWithImage> convertToFieldList(FormLayout formLayout, List<BufferedImage> pages){
+		List<FormFieldWithImage> fieldSet = new LinkedList<FormFieldWithImage>();
+		
+		int curPage = 0;
+		
+		for(List<FormField> page : formLayout.getPages()){
+			BufferedImage curPageImg = pages.get(curPage);
+			for(FormField field : page){
+				FormFieldWithImage extendedField = extendFormField(field, cropField(curPageImg, field));
+				fieldSet.add(extendedField);
+			}
+			curPage++;
+		}
+		
+		return fieldSet;
 	}
 }

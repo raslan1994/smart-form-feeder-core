@@ -35,9 +35,8 @@ public class StandaloneServer
     	context.addServlet(homePageHolder, "/");
     	context.addServlet(formFeederService, "/feed");
     	context.addServlet(formLayoutService, "/formLayouts");
-    	
     	server.setHandler(context);
-
+    	
     	try{
     		logger.info("StandaloneServer", "Starting Server");
     		server.start();

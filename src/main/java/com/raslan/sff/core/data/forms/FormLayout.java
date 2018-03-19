@@ -6,7 +6,21 @@ public class FormLayout {
 	private List<List<FormField>> pages;
 	private String requestURL;
 	private String requestMethod;
+	private int imageHeight;
+	private int imageWidth;
 	
+	public int getImageHeight() {
+		return imageHeight;
+	}
+	public void setImageHeight(int imageHeight) {
+		this.imageHeight = imageHeight;
+	}
+	public int getImageWidth() {
+		return imageWidth;
+	}
+	public void setImageWidth(int imageWidth) {
+		this.imageWidth = imageWidth;
+	}
 	public List<List<FormField>> getPages() {
 		return pages;
 	}
