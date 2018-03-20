@@ -18,6 +18,7 @@ import com.raslan.sff.web.HomePageServlet;
  */
 public class StandaloneServer 
 {
+	
     public static void main( String[] args ) 
     {
     	FormLayoutManager.getInstance().loadConfigs();;
