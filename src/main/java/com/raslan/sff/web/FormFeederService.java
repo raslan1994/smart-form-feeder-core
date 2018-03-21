@@ -25,6 +25,7 @@ import com.raslan.sff.core.cs.Segmentation;
 import com.raslan.sff.core.data.forms.FormFieldWithImage;
 import com.raslan.sff.core.data.forms.FormLayout;
 import com.raslan.sff.core.data.forms.FormLayoutManager;
+import com.raslan.sff.core.data.forms.FormResult;
 import com.raslan.sff.core.nn.CharacterRecognizer;
 import com.raslan.sff.core.nn.RecognitionResult;
 import com.raslan.sff.core.util.Logger;
@@ -76,10 +77,13 @@ public class FormFeederService extends HttpServlet{
 			
 			//convert to list
 			List<FormFieldWithImage> extendedFieldSet = layoutManager.convertToFieldList(formLayout, pages);
-			
+			//recognize and feed data
 			recognizeText(extendedFieldSet);
 			try {
-				out.write(mapper.writeValueAsString(extendedFieldSet));
+				FormResult result = new FormResult();
+				result.fill(formLayout);
+				result.setPages(extendedFieldSet);
+				out.write(mapper.writeValueAsString(result));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
