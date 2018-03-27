@@ -3,6 +3,8 @@ package com.raslan.sff.core.data;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
+import com.raslan.sff.core.Config;
+import com.raslan.sff.core.ImageHelper;
 import com.raslan.sff.core.util.Logger;
 import com.raslan.sff.filters.Filter;
 import com.raslan.sff.filters.ImageUtilities;
@@ -18,6 +20,7 @@ public class BinaryImage {
 	
 	public BinaryImage(BufferedImage img, List<Filter> filters){
 		BufferedImage filteredImage = img;
+		//Applying required filters
         if (filters != null) {
             for (Filter filter : filters) {
                 filteredImage = filter.applyFilter(filteredImage);
@@ -26,6 +29,14 @@ public class BinaryImage {
         int width = filteredImage.getWidth();
         int height = filteredImage.getHeight();
         this.img = filteredImage;
+        
+        //Test extraction
+        if(Config.IS_TEST_EXTRACTION_ENABLED){
+        	String outPutPath = Config.TEST_EXTRACTION_PATH + "char_" + Config.TEST_EXTRACTION_COUNTER+++".png";
+        	ImageHelper.writeImageToFile(filteredImage, "png", outPutPath);
+        }
+        
+        
         this.pixels = new int[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {

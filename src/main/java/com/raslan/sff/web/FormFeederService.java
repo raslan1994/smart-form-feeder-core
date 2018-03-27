@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.raslan.sff.auth.UserAuthHelper;
 import com.raslan.sff.core.Config;
 import com.raslan.sff.core.ImageHelper;
 import com.raslan.sff.core.cs.Segmentation;
@@ -45,6 +46,12 @@ public class FormFeederService extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//check authentication
+		if(!UserAuthHelper.isUserLoggedIn(req)){
+			WebHelper.writeUnauthorizedAccessHeader(resp);
+			return;
+		}
+		
 		WebHelper.writeServiceHeader(resp);
 		String strLayoutIndex = req.getParameter("li");
 		
@@ -76,6 +83,8 @@ public class FormFeederService extends HttpServlet{
 			}
 			
 			//convert to list
+			logger.log("FormFeederService", "Form layout pages count : " + formLayout.getPages().size());
+			logger.log("FormFeederService", "Form request URL is " + formLayout.getRequestURL());
 			List<FormFieldWithImage> extendedFieldSet = layoutManager.convertToFieldList(formLayout, pages);
 			//recognize and feed data
 			recognizeText(extendedFieldSet);
