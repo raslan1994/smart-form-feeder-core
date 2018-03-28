@@ -21,4 +21,14 @@ public class Config {
 	/* Client Configuration */
 	public static final String CLIENT_HOST = "http://localhost/smart-form-feeder";
 	public static final String CLIENT_CROSS_ORIGIN = "http://localhost";
+	
+	/* Database */
+	protected final String USERNAME = "root";
+    protected final String PASSWORD = "Mysqlisbest1";
+    protected final String HOST = "127.0.0.1";
+    protected final int PORT = 3306;
+    protected final String DATABASE = "smart_form_feeder";
+    
+    /* super administrator */
+    public static final String SA_PASSWORD = "7BCF94A22F44EDD39838D05EE1811869F19ECA8797A0E9699FE149BA0C1066B4";
 }

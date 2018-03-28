@@ -17,6 +17,7 @@ import com.raslan.sff.web.FormFeederService;
 import com.raslan.sff.web.FormLayoutWebService;
 import com.raslan.sff.web.HomePageServlet;
 import com.raslan.sff.web.LoginServlet;
+import com.raslan.sff.web.RegisterUserServlet;
 import com.raslan.sff.web.TesterServlet;
 
 /**
@@ -38,8 +39,9 @@ public class StandaloneServer
     	ServletHolder formFeederService = new ServletHolder("formFeederService",FormFeederService.class);
     	
     	ServletHolder loginPageHolder = new ServletHolder("loginPage",LoginServlet.class);
-    	ServletHolder testPageHolder = new ServletHolder("testPage", TesterServlet.class);
+    	ServletHolder registerPageHolder = new ServletHolder("registerPage",RegisterUserServlet.class);
     	
+    	/* Cross Origin Filter -- Security */
     	FilterHolder holder = new FilterHolder(new CrossOriginFilter());
     	holder.setInitParameter("allowedMethods", "GET,POST,HEAD,OPTIONS");
     	
@@ -50,7 +52,7 @@ public class StandaloneServer
     	context.addServlet(formFeederService, "/feed");
     	context.addServlet(formLayoutService, "/formLayouts");
     	context.addServlet(loginPageHolder, "/login");
-    	context.addServlet(testPageHolder, "/test");
+    	context.addServlet(registerPageHolder, "/register");
     	context.addFilter(holder, Config.CLIENT_CROSS_ORIGIN, EnumSet.of(DispatcherType.REQUEST));
     	
     	server.setHandler(context);

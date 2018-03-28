@@ -8,14 +8,17 @@ package com.raslan.sff.auth;
 import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.raslan.sff.sql.SQLConnectionHelper;
+import com.raslan.sff.sql.SQLQueryHelper;
 
 /**
  *
  * @author Raslan Rauff_2
  */
 public class UserAuthHelper {
+	static SQLConnectionHelper connection = SQLConnectionHelper.getInstance();
     public static boolean isUserLoggedIn(HttpServletRequest request) 
             throws IOException{
     	boolean isUserLoggedIn = true;
@@ -39,5 +42,23 @@ public class UserAuthHelper {
         
         return isUserLoggedIn;
       
+    }
+    
+    public static void createNewUser(User user){
+    	SQLQueryHelper queryHelper = new SQLQueryHelper();
+    	String sql = "insert into `user` (`first_name`,`last_name`,`user_name`,`password`) values (?,?,?,unhex(?));";
+    	Object[] parameter = new Object[]{
+    			user.getFirstName(),
+    			user.getLastName(),
+    			user.getUserName(),
+    			user.getPassword()
+    	};
+    	queryHelper.executeUpdate(sql, parameter);
+    }
+    
+    public static User getUser(String username, String Password){
+    	User user = null;
+    	
+    	return user;
     }
 }

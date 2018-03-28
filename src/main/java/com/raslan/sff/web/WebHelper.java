@@ -3,6 +3,7 @@ package com.raslan.sff.web;
 import java.io.IOException;
 import java.io.Writer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.raslan.sff.core.Config;
@@ -32,10 +33,90 @@ public class WebHelper {
 		resp.setStatus(HttpServletResponse.SC_OK);
 	}
 	
-	public static void writeLoginUI(HttpServletResponse resp) throws IOException{
-		Writer out = resp.getWriter();
+	private static void writeBootstrapLinks(Writer out) throws IOException{
 		out.write("<link href='" + Config.CLIENT_HOST + "/src/css/bootstrap.css' rel='stylesheet'></link>");
+	}
+	
+	public static void writeNewUserUI(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		/*
+		 * 1 - required field missing
+		 * 2 - invalid super administrator password
+		 */
+		String errorCode = req.getParameter("ec");
+		Writer out = resp.getWriter();
+		
+		writeBootstrapLinks(out);
+		
 		out.write("<div class='container' style='max-width: 500px'>");
+		
+		if(errorCode != null && errorCode.equals("1")){
+			out.write("<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
+					+ "<strong>All fields are required</strong> please input necessary data and try again."
+					/*+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+					+ "<span aria-hidden='true'>&times;</span>"
+					+ "</button>"*/
+					+ "</div>");
+		}else if(errorCode != null && errorCode.equals("2")){
+			out.write("<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
+					+ "<strong>Invalid SA password</strong> Provided super administrator password is invalid please check and try again."
+					/*+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+					+ "<span aria-hidden='true'>&times;</span>"
+					+ "</button>"*/
+					+ "</div>");
+		}
+		
+		out.write("<form action='' method='post'>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<label>Super administrator Password</label>");
+		out.write("<input type='password' class='form-control' name='sapass' required='required'/>");
+		out.write("</div>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<label>First name</label>");
+		out.write("<input type='text' class='form-control' name='fname' required='required'/>");
+		out.write("</div>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<label>Last name</label>");
+		out.write("<input type='text' class='form-control' name='lname' required='required'/>");
+		out.write("</div>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<label>User name</label>");
+		out.write("<input type='text' class='form-control' name='uname' required='required'/>");
+		out.write("</div>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<label>Password</label>");
+		out.write("<input type='password' class='form-control' name='pass' required='required'/>");
+		out.write("</div>");
+		
+		out.write("<div class='form-group'>");
+		out.write("<input type='submit' class='btn btn-sm btn-warning' name='submit' value='Create'/>");
+		out.write("</div>");
+		
+		out.write("</form>");
+		out.write("</div>");
+	}
+	
+	public static void writeLoginUI(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		String isErrorMessage = req.getParameter("ise");
+		Writer out = resp.getWriter();
+		
+		writeBootstrapLinks(out);
+		
+		out.write("<div class='container' style='max-width: 500px'>");
+		
+		if(isErrorMessage != null){
+			out.write("<div class='alert alert-warning alert-dismissible fade show' role='alert'>"
+					+ "<strong>Invalid Credential</strong> Please check username, password and try again shortly."
+					/*+ "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>"
+					+ "<span aria-hidden='true'>&times;</span>"
+					+ "</button>"*/
+					+ "</div>");
+		}
+		
 		out.write("<form action='' method='post'>");
 		
 		out.write("<div class='form-group'>");

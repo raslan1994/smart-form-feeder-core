@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebHelper.writeLocalHtmlHeader(resp);
-		WebHelper.writeLoginUI(resp);
+		WebHelper.writeLoginUI(req,resp);
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet{
 		String password = req.getParameter("password");
 		
 		if(username == null || password == null || username.trim().equals("") || password.trim().equals("")){
-			resp.sendRedirect("/login");
+			resp.sendRedirect("/login?ise=true");
 			return;
 		}
 		
@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet{
 	        userAuthCookie.setPath("/");
 	        
 	        resp.addCookie(userAuthCookie);
-			resp.sendRedirect(Config.CLIENT_HOST+"/test.html");
+			resp.sendRedirect(Config.CLIENT_HOST);
 			return;
 		}
 		
