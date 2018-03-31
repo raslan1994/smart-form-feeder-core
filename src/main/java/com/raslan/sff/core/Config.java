@@ -14,8 +14,10 @@ public class Config {
 	
 	/* Test Image Extraction */
 	public static final boolean IS_TEST_EXTRACTION_ENABLED = true;
-	public static final String TEST_EXTRACTION_PATH = "/home/raslanrauff/smart-form-feeder-extraction/test_extraction/";
+	public static final String TEST_EXTRACTION_PATH = "/home/raslanrauff/smart-form-feeder-extraction/real-time-extraction/";
 	public static int TEST_EXTRACTION_COUNTER = 1;
+	public static int TEST_EXTRACTION_FIELD_POS = 0;
+	public static int TEST_EXTRACTION_CHAR_POS = 0;
 	//public static final double CONFIDENT_LEVEL = 0.5;
 	
 	/* Client Configuration */

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.raslan.sff.auth.UserAuthHelper;
 import com.raslan.sff.core.Config;
 import com.raslan.sff.core.ImageHelper;
+import com.raslan.sff.core.TestExtraction;
 import com.raslan.sff.core.cs.Segmentation;
 import com.raslan.sff.core.data.forms.FormFieldWithImage;
 import com.raslan.sff.core.data.forms.FormLayout;
@@ -43,6 +44,7 @@ public class FormFeederService extends HttpServlet{
 	
 	static String extractionBasePath = "/home/raslanrauff/smart-form-feeder-extraction/";
 	Logger logger = Logger.getInstance();
+	TestExtraction testExtraction = TestExtraction.getInstancce();
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -66,7 +68,6 @@ public class FormFeederService extends HttpServlet{
 			List<BufferedImage> pages = new ArrayList<BufferedImage>();
 			FormLayout formLayout= layoutManager.getAvailableLayouts().get(layoutindex);
 			
-			int pos = 0;
 			for(Part part : inputParts){
 				Image bimg;
 				try {
@@ -82,10 +83,21 @@ public class FormFeederService extends HttpServlet{
 				}
 			}
 			
+			//page test extraction
+			if(Config.IS_TEST_EXTRACTION_ENABLED){
+				testExtraction.extractPages(pages);
+			}
+			
 			//convert to list
 			logger.log("FormFeederService", "Form layout pages count : " + formLayout.getPages().size());
 			logger.log("FormFeederService", "Form request URL is " + formLayout.getRequestURL());
 			List<FormFieldWithImage> extendedFieldSet = layoutManager.convertToFieldList(formLayout, pages);
+			
+			//extract fields
+			if(Config.IS_TEST_EXTRACTION_ENABLED){
+				testExtraction.extractFields(extendedFieldSet);
+			}
+			
 			//recognize and feed data
 			recognizeText(extendedFieldSet);
 			try {
@@ -117,9 +129,16 @@ public class FormFeederService extends HttpServlet{
 			String value = "";
 			int charPos = 0;
 			for(BufferedImage c : chars){
-				//temp
-				ImageHelper.writeImageToFile(c, "png", extractionBasePath + "char/bf"+fieldPos+"_"+charPos+".png");
-				RecognitionResult result = characterRecognizer.recognieChar(c);
+				
+				//test extraction
+				if(Config.IS_TEST_EXTRACTION_ENABLED){
+					testExtraction.extractFieldChars(fieldPos, charPos, false, c);
+					Config.TEST_EXTRACTION_FIELD_POS = fieldPos;
+					Config.TEST_EXTRACTION_CHAR_POS = charPos;
+				}
+				
+				//recognize
+				RecognitionResult result = characterRecognizer.recognizeChar(c);
 				
 				if(result.getBestFitCharacter() != null){
 					value += result.getBestFitCharacter().toString();

@@ -34,7 +34,7 @@ public class CharacterRecognizer {
 		network = NeuralNetwork.createFromFile(networkPath);
 	}
 	
-	public RecognitionResult recognieChar(BufferedImage img){
+	public RecognitionResult recognizeChar(BufferedImage img){
 		RecognitionResult result = new RecognitionResult();
 		
 		if(img==null) return null;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.raslan.sff.core.Config;
 import com.raslan.sff.core.ImageHelper;
+import com.raslan.sff.core.TestExtraction;
 import com.raslan.sff.core.util.Logger;
 import com.raslan.sff.filters.Filter;
 import com.raslan.sff.filters.ImageUtilities;
@@ -32,8 +33,7 @@ public class BinaryImage {
         
         //Test extraction
         if(Config.IS_TEST_EXTRACTION_ENABLED){
-        	String outPutPath = Config.TEST_EXTRACTION_PATH + "char_" + Config.TEST_EXTRACTION_COUNTER+++".png";
-        	ImageHelper.writeImageToFile(filteredImage, "png", outPutPath);
+        	TestExtraction.getInstancce().extractCurrentChar(filteredImage, true);
         }
         
         
