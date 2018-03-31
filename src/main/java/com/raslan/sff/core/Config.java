@@ -13,7 +13,7 @@ public class Config {
 	public static final double DEFAULT_MOMENTUM = 0.025d;
 	
 	/* Test Image Extraction */
-	public static final boolean IS_TEST_EXTRACTION_ENABLED = true;
+	public static final boolean IS_TEST_EXTRACTION_ENABLED = false;
 	public static final String TEST_EXTRACTION_PATH = "/home/raslanrauff/smart-form-feeder-extraction/real-time-extraction/";
 	public static int TEST_EXTRACTION_COUNTER = 1;
 	public static int TEST_EXTRACTION_FIELD_POS = 0;
