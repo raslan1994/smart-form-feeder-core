@@ -1,11 +1,13 @@
 package com.raslan.sff.auth;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class User {
 	private int id;
 	private String firstName;
-	private String LastName;
+	private String lastName;
 	private String userName;
 	private String password;
 	private Date lastLogined;
@@ -23,10 +25,10 @@ public class User {
 		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		lastName = lastName;
 	}
 	public String getUserName() {
 		return userName;
@@ -45,5 +47,16 @@ public class User {
 	}
 	public void setLastLogined(Date lastLogined) {
 		this.lastLogined = lastLogined;
+	}
+	public void fillResult(ResultSet rs) throws SQLException{
+		this.id = rs.getInt("id");
+		this.firstName = rs.getString("first_name");
+		this.lastName = rs.getString("last_name");
+		this.userName = rs.getString("user_name");
+		this.password = rs.getString("password");
+		java.sql.Date td = rs.getDate("last_logined");
+		if(td!= null){
+			this.lastLogined = new Date(td.getTime());
+		}
 	}
 }

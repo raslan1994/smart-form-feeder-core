@@ -121,12 +121,12 @@ public class WebHelper {
 		
 		out.write("<div class='form-group'>");
 		out.write("<label>Username</label>");
-		out.write("<input type='text' class='form-control' name='username'/>");
+		out.write("<input type='text' class='form-control' name='username' required='required'/>");
 		out.write("</div>");
 		
 		out.write("<div class='form-group'>");
 		out.write("<label>Password</label>");
-		out.write("<input type='password' class='form-control' name='password'/>");
+		out.write("<input type='password' class='form-control' name='password' required='required'/>");
 		out.write("</div>");
 		
 		out.write("<div class='form-group'>");

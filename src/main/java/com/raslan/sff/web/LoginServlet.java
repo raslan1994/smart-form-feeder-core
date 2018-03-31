@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.raslan.sff.auth.User;
+import com.raslan.sff.auth.UserAuthHelper;
 import com.raslan.sff.core.Config;
 
 public class LoginServlet extends HttpServlet{
@@ -29,9 +31,9 @@ public class LoginServlet extends HttpServlet{
 			return;
 		}
 		
-		boolean isPassed = true;
+		User loginedUser = UserAuthHelper.getUser(username, password);
 		
-		if(isPassed){
+		if(loginedUser != null && loginedUser.getId() > 0){
 			String token = UUID.randomUUID().toString();
 			req.getSession().setAttribute("token", token);
 			req.getSession().setAttribute("uid", "1");
@@ -40,6 +42,9 @@ public class LoginServlet extends HttpServlet{
 	        
 	        resp.addCookie(userAuthCookie);
 			resp.sendRedirect(Config.CLIENT_HOST);
+			return;
+		}else{
+			resp.sendRedirect("/login?ise=true");
 			return;
 		}
 		

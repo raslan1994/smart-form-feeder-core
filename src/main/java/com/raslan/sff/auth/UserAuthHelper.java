@@ -6,11 +6,20 @@
 package com.raslan.sff.auth;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.raslan.sff.core.util.HashGenerator;
+import com.raslan.sff.core.util.Logger;
 import com.raslan.sff.sql.SQLConnectionHelper;
+import com.raslan.sff.sql.SQLParameterFactory;
 import com.raslan.sff.sql.SQLQueryHelper;
 
 /**
@@ -19,6 +28,7 @@ import com.raslan.sff.sql.SQLQueryHelper;
  */
 public class UserAuthHelper {
 	static SQLConnectionHelper connection = SQLConnectionHelper.getInstance();
+	static Logger logger = Logger.getInstance();
     public static boolean isUserLoggedIn(HttpServletRequest request) 
             throws IOException{
     	boolean isUserLoggedIn = true;
@@ -56,9 +66,26 @@ public class UserAuthHelper {
     	queryHelper.executeUpdate(sql, parameter);
     }
     
-    public static User getUser(String username, String Password){
+    public static User getUser(String username, String password){
     	User user = null;
-    	
+    	String passwordHash = HashGenerator.getSHA256(password);
+    	String sql = "select `id`,`first_name`,`last_name`,`user_name`,`password`,`last_logined` from `user` where `user_name` = ? and `password` =unhex(?);";
+    	Object[] parameter = new Object[]{
+    			username, passwordHash
+    	};
+    	Connection con = connection.getConnection();
+    	try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			SQLParameterFactory.bindParameters(stmt, parameter);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.first()){
+				user = new User();
+				user.fillResult(rs);
+			}
+		} catch (SQLException e) {
+			logger.error("UserAuthHelper", e.toString());
+		}
     	return user;
     }
 }
