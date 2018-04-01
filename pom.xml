@@ -22,7 +22,7 @@
 	    <configuration>
 	        <archive>
 	            <manifest>
-	                <mainClass>com.raslan.sff.core.StandaloneServer</mainClass>
+	                <!-- <mainClass>com.raslan.sff.core.StandaloneServer</mainClass> -->
 	            </manifest>
 	        </archive>
 	        <descriptorRefs>
