@@ -18,7 +18,6 @@ import com.raslan.sff.web.FormLayoutWebService;
 import com.raslan.sff.web.HomePageServlet;
 import com.raslan.sff.web.LoginServlet;
 import com.raslan.sff.web.RegisterUserServlet;
-import com.raslan.sff.web.TesterServlet;
 
 /**
  * Primary execution class
