@@ -37,9 +37,12 @@ public class LoginServlet extends HttpServlet{
 			String token = UUID.randomUUID().toString();
 			req.getSession().setAttribute("token", token);
 			req.getSession().setAttribute("uid", "1");
+			Cookie userNameCookie = new Cookie("user", loginedUser.getUserName());
+			userNameCookie.setPath("/");
 			Cookie userAuthCookie = new Cookie("uauthtkn", token);
 	        userAuthCookie.setPath("/");
 	        
+	        resp.addCookie(userNameCookie);
 	        resp.addCookie(userAuthCookie);
 			resp.sendRedirect(Config.CLIENT_HOST);
 			return;

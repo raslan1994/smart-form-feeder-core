@@ -66,6 +66,28 @@ public class UserAuthHelper {
     	queryHelper.executeUpdate(sql, parameter);
     }
     
+    public static User getUserById(int userId){
+    	User user = null;
+    	String sql = "select `id`,`first_name`,`last_name`,`user_name`,`password`,`last_logined` from `user` where `id` = ?";
+    	Object[] parameter = new Object[]{
+    			userId
+    	};
+    	Connection con = connection.getConnection();
+    	try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			SQLParameterFactory.bindParameters(stmt, parameter);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.first()){
+				user = new User();
+				user.fillResult(rs);
+			}
+		} catch (SQLException e) {
+			logger.error("UserAuthHelper", e.toString());
+		}
+    	return user;
+    }
+    
     public static User getUser(String username, String password){
     	User user = null;
     	String passwordHash = HashGenerator.getSHA256(password);
