@@ -21,7 +21,7 @@ public class RegisterUserServlet extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String firstName = req.getParameter("uname");
+		String firstName = req.getParameter("fname");
 		String lastName = req.getParameter("lname");
 		String username = req.getParameter("uname");
 		String password = req.getParameter("pass");
