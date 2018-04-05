@@ -12,8 +12,7 @@ public class HomePageServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebHelper.writeHtmlHeader(resp);
-		Writer out = resp.getWriter();
-		out.write("<h3>Welcome :) </h3>");
-		resp.flushBuffer();
+		WebHelper.writeWelcomeUI(req, resp);
+		
 	}
 }
