@@ -8,12 +8,12 @@ public class Config {
 	public static final int THRESHOLD = 100;
 	public static final String DATASET_TEST_PATH = "/home/raslanrauff/ML/Complete-English/test/";
 	public static final String DATASET_TRAIN_PATH = "/home/raslanrauff/ML/Complete-English/train/";
-	public static final String DEFAULT_NEURAL_NETWORK_NAME = "englishHandPickedDataSetV3.nnet";
+	public static final String DEFAULT_NEURAL_NETWORK_NAME = "/home/raslanrauff/smart-form-feeder-config/englishHandPickedDataSetV3.nnet";
 	public static final double DEFAULT_LEARNING_RATE = 0.01d;
 	public static final double DEFAULT_MOMENTUM = 0.025d;
 	
 	/* Test Image Extraction */
-	public static final boolean IS_TEST_EXTRACTION_ENABLED = false;
+	public static boolean IS_TEST_EXTRACTION_ENABLED = false;
 	public static final String TEST_EXTRACTION_PATH = "/home/raslanrauff/smart-form-feeder-extraction/real-time-extraction/";
 	public static int TEST_EXTRACTION_COUNTER = 1;
 	public static int TEST_EXTRACTION_FIELD_POS = 0;

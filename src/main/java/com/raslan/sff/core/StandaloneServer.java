@@ -33,6 +33,13 @@ public class StandaloneServer
     	Logger logger = Logger.getInstance();
     	Server server = new Server(Config.SERVER_PORT);
     	
+    	for(String arg : args){
+    		if(arg.equals("extract")){
+    			Config.IS_TEST_EXTRACTION_ENABLED = true;
+    			logger.info("Server", "Test Extraction Has been enabled");
+    		}
+    	}
+    	
     	ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     	ServletHolder homePageHolder = new ServletHolder("homePage",HomePageServlet.class);
     	ServletHolder formLayoutService = new ServletHolder("formLayoutService", FormLayoutWebService.class);
