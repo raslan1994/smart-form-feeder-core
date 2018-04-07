@@ -2,9 +2,6 @@ package com.raslan.sff.filters;
 
 import java.awt.image.BufferedImage;
 
-/**
- * @author Filip Gulan
- */
 public class BilinearScaleFilter implements Filter {
 
     private int newWidth;

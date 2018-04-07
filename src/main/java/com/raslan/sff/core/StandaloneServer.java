@@ -13,6 +13,7 @@ import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import com.raslan.sff.core.data.forms.FormLayoutManager;
 import com.raslan.sff.core.util.Logger;
+import com.raslan.sff.web.EndPointTestServlet;
 import com.raslan.sff.web.FormFeederService;
 import com.raslan.sff.web.FormLayoutWebService;
 import com.raslan.sff.web.HomePageServlet;
@@ -49,6 +50,8 @@ public class StandaloneServer
     	ServletHolder logoutPageHolder = new ServletHolder("logoutPage",LogoutServlet.class);
     	ServletHolder registerPageHolder = new ServletHolder("registerPage",RegisterUserServlet.class);
     	
+    	ServletHolder testPageHolder = new ServletHolder("testPage",EndPointTestServlet.class);
+    	
     	/* Cross Origin Filter -- Security */
     	FilterHolder holder = new FilterHolder(new CrossOriginFilter());
     	holder.setInitParameter("allowedMethods", "GET,POST,HEAD,OPTIONS");
@@ -62,6 +65,8 @@ public class StandaloneServer
     	context.addServlet(loginPageHolder, "/login");
     	context.addServlet(logoutPageHolder, "/logout");
     	context.addServlet(registerPageHolder, "/register");
+    	
+    	context.addServlet(testPageHolder, "/test");
     	context.addFilter(holder, Config.CLIENT_CROSS_ORIGIN, EnumSet.of(DispatcherType.REQUEST));
     	
     	server.setHandler(context);

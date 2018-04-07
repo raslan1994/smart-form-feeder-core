@@ -1,8 +1,5 @@
 package com.raslan.sff.filters;
 
-/**
- * @author Filip Gulan
- */
 public class ImageUtilities {
 
     public static int colorToRGB(int alpha, int red, int green, int blue) {

@@ -3,9 +3,6 @@ package com.raslan.sff.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * @author Filip Gulan
- */
 public class DilationFilter implements Filter {
 
     private static final int BLACK = 0;

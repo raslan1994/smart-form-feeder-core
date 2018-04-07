@@ -3,9 +3,6 @@ package com.raslan.sff.filters;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * @author Filip Gulan
- */
 public class ResizeFilter implements Filter {
 
     private int dimension;

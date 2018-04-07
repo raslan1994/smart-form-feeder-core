@@ -3,9 +3,6 @@ package com.raslan.sff.filters;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Filip Gulan
- */
 public class FiltersFactory {
 
     public static List<Filter> filters;

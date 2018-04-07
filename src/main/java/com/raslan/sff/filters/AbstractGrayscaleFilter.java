@@ -3,9 +3,6 @@ package com.raslan.sff.filters;
 
 import java.awt.image.BufferedImage;
 
-/**
- * @author Filip Gulan
- */
 public abstract class AbstractGrayscaleFilter implements Filter {
 
     @Override

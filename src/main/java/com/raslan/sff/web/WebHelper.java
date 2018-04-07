@@ -33,7 +33,7 @@ public class WebHelper {
 		resp.setStatus(HttpServletResponse.SC_OK);
 	}
 	
-	private static void writeBootstrapLinks(Writer out) throws IOException{
+	public static void writeBootstrapLinks(Writer out) throws IOException{
 		out.write("<link href='" + Config.CLIENT_HOST + "/src/css/bootstrap.css' rel='stylesheet'></link>");
 	}
 	

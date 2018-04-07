@@ -2,9 +2,6 @@ package com.raslan.sff.filters;
 
 import java.awt.image.BufferedImage;
 
-/**
- * @author Filip Gulan
- */
 public class CropFilter implements Filter {
     private static final int OFFSET = 1;
     private BufferedImage image;

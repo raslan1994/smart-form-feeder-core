@@ -1,8 +1,5 @@
 package com.raslan.sff.filters;
 
-/**
- * @author Filip Gulan
- */
 public class GrayscaleFilter extends AbstractGrayscaleFilter {
 
     private static final float RED_GRAYSCALE_FACTOR = 0.2126f;
